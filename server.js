@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
-import { addHoldingsController } from './contollers/addHoldingsController.js'
-import { removeHoldingsController } from "./contollers/removeHoldingsController.js"
+import { addHoldingsController } from './controllers/addHoldingsController.js'
+import { removeHoldingsController } from "./controllers/removeHoldingsController.js"
 
 const PORT = 5001
 const app = express()
