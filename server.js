@@ -3,6 +3,7 @@ import cors from "cors"
 import { addHoldingsController } from './controllers/addHoldingsController.js'
 import { removeHoldingsController } from "./controllers/removeHoldingsController.js"
 import { viewPortfolioController } from "./controllers/viewPortfolioController.js"
+import { viewTransactionHistoryController } from "./controllers/viewTransactionHistoryController.js"
 
 const PORT = 5001
 const app = express()
@@ -19,6 +20,7 @@ app.use(cors({
 app.post('/addHoldings', addHoldingsController.addHoldings)
 app.post('/removeHoldings', removeHoldingsController.removeHoldings)
 app.get('/viewPortfolio', viewPortfolioController.viewPortfolio)
+app.get('/viewTransactionHistory', viewTransactionHistoryController.viewTransactionHistory)
 
 app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
