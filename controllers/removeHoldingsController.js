@@ -25,6 +25,12 @@ export const removeHoldingsController = {
                     const values = [request.body.company]
                     
                     const [result] = await connection.query(query, values)
+                    
+                    const que = 'INSERT INTO transactions (company, action, price, quantity, time_stamp) VALUES(?, ?, ?, ?, ?)'
+                    const vals = [request.body.company, 'sell', request.body.price, request.body.quantity, request.body.timestamp]
+                    
+                    const [res] = await connection.query(que, vals)
+
                     return response.status(200).json( { 
                         success: true,
                         message: "All Holdings removed successfully" 
@@ -36,6 +42,12 @@ export const removeHoldingsController = {
                     const values = [holding_quantity - request.body.quantity, request.body.company]
 
                     const [rows] = await connection.query(query, values)
+
+                    const que = 'INSERT INTO transactions (company, action, price, quantity, time_stamp) VALUES(?, ?, ?, ?, ?)'
+                    const vals = [request.body.company, 'sell', request.body.price, request.body.quantity, request.body.timestamp]
+
+                    const [res] = await connection.query(que, vals)
+
                     return response.status(200).json( {
                         success: true,
                         message: 'Holdings removed successfully'
