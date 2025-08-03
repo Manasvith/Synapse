@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import { addHoldingsController } from './controllers/addHoldingsController.js'
 import { removeHoldingsController } from "./controllers/removeHoldingsController.js"
+import { viewPortfolioController } from "./controllers/viewPortfolioController.js"
 
 const PORT = 5001
 const app = express()
@@ -17,6 +18,7 @@ app.use(cors({
 
 app.post('/addHoldings', addHoldingsController.addHoldings)
 app.post('/removeHoldings', removeHoldingsController.removeHoldings)
+app.get('/viewPortfolio', viewPortfolioController.viewPortfolio)
 
 app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
@@ -25,7 +27,6 @@ app.use((err, req, res, next) => {
         error: 'Something went wrong!' 
     });
 });
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
