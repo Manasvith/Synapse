@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { addHoldingsController } from './contollers/addHoldingsController.js'
+import { removeHoldingsController } from "./contollers/removeHoldingsController.js"
 
 const PORT = 5001
 const app = express()
@@ -15,6 +16,7 @@ app.use(cors({
 }));
 
 app.post('/addHoldings', addHoldingsController.addHoldings)
+app.post('/removeHoldings', removeHoldingsController.removeHoldings)
 
 app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
