@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import { addHoldingsController } from './controllers/addHoldingsController.js'
 import { removeHoldingsController } from "./controllers/removeHoldingsController.js"
+import { removeAllHoldingsController } from "./controllers/removeAllHoldingsController.js" 
 import { viewPortfolioController } from "./controllers/viewPortfolioController.js"
 import { viewTransactionHistoryController } from "./controllers/viewTransactionHistoryController.js"
 
@@ -19,6 +20,7 @@ app.use(cors({
 
 app.post('/addHoldings', addHoldingsController.addHoldings)
 app.post('/removeHoldings', removeHoldingsController.removeHoldings)
+app.post('/removeAllHoldings', removeAllHoldingsController.removeAllHoldings)
 app.get('/viewPortfolio', viewPortfolioController.viewPortfolio)
 app.get('/viewTransactionHistory', viewTransactionHistoryController.viewTransactionHistory)
 
