@@ -10,7 +10,7 @@ export const addToSettlementAcctController = {
             let new_balance = curr_balance + request.body.transaction_amount
 
             const query = "INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)"
-            const values = ["Add", request.body.transaction_amount, new_balance, request.bod.timestamp]
+            const values = ["Add", request.body.transaction_amount, new_balance, request.body.timestamp]
             
             await connection.query(query, values)
 
