@@ -6,6 +6,8 @@ import { removeAllHoldingsController } from "./controllers/removeAllHoldingsCont
 import { viewPortfolioController } from "./controllers/viewPortfolioController.js"
 import { viewTransactionHistoryController } from "./controllers/viewTransactionHistoryController.js"
 import { viewSettlementAccountController } from "./controllers/viewSettlementAccountController.js"
+import { addToSettlementAcctController } from "./controllers/addToSettlementAcctController.js"
+import { withdrawFromSettlementAcctController } from "./controllers/withdrawFromSettlementAcctController.js"
 
 const PORT = 5001
 const app = express()
@@ -26,6 +28,8 @@ app.get('/viewPortfolio', viewPortfolioController.viewPortfolio)
 app.get('/viewTransactionHistory', viewTransactionHistoryController.viewTransactionHistory)
 app.get('/viewAcctBalance', viewSettlementAccountController.viewAccountBalance)
 app.get('/viewAcctStatement', viewSettlementAccountController.viewAccountStatement)
+app.post('/addtoSettlementAcct', addToSettlementAcctController.addToSettlementAccount)
+app.post('/withdrawFromSettlementAcct', withdrawFromSettlementAcctController.withdrawFromSettlementAccount)
 
 app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
