@@ -25,9 +25,10 @@ export const removeHoldingsController = {
                     const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
                     let curr_balance = r[0].current_balance
 
-                    const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
+                    const q = "INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?);"
                     const v = ['Liquidate', holding_quantity*request.body.price, curr_balance + holding_quantity*request.body.price, request.body.timestamp]
                     await connection.query(q, v)
+                    console.log(connection.format(q, v));
 
                     const query = 'DELETE FROM portfolio WHERE company = ?'
                     const values = [request.body.company]
@@ -50,7 +51,7 @@ export const removeHoldingsController = {
                     let curr_balance = r[0].current_balance
 
                     const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
-                    const v = ['Liquidate', request.body.quantity*request.body.price, curr_balance + holding_quantity*request.body.price, ]
+                    const v = ['Liquidate', request.body.quantity*request.body.price, curr_balance + holding_quantity*request.body.price, request.body.timestamp]
                     await connection.query(q, v)
 
                     const query = 'UPDATE Portfolio SET quantity = ? WHERE company = ?'
