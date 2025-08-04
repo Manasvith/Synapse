@@ -8,13 +8,13 @@ export const removeAllHoldingsController = {
             
             let allHoldings = rows[0].quantity
             
-            const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+            const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
             let curr_balance = r[0].current_balance
 
             const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
             const v = ['Liquidate', allHoldings*request.body.price, curr_balance + allHoldings*request.body.price, request.body.timestamp]
             await connection.query(q, v)
-            
+
             const query = 'DELETE FROM portfolio where company = ?'
             await connection.query(query, company)
             

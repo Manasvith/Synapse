@@ -22,7 +22,7 @@ export const removeHoldingsController = {
                     return response.status(400).json({ success: false, message: "Quantity exceeds holdings" });
                 }
                 else if(request.body.quantity === holding_quantity) {
-                    const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+                    const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
                     let curr_balance = r[0].current_balance
 
                     const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
@@ -46,7 +46,7 @@ export const removeHoldingsController = {
                 }
                 else {
                     
-                    const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+                    const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
                     let curr_balance = r[0].current_balance
 
                     const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'

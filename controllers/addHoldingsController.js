@@ -20,7 +20,7 @@ export const addHoldingsController = {
         
         //console.log(request.body.company, alreadyHeld, holding_price, holding_price)
 
-        const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+        const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
 
         let curr_balance = r[0].current_balance
 
