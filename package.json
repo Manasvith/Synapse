@@ -1,18 +1,33 @@
 {
-  "name": "actual",
+  "name": "synapse",
   "version": "1.0.0",
-  "description": "Project",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "db.js",
+  "dependencies": {
+    "express": "^5.1.0",
+    "supertest": "^7.1.4",
+    "dotenv": "^17.2.1",
+    "mysql2": "^3.14.3",
+    "cors": "^2.8.5"
   },
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manasvith/Synapse.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "mysql2": "^3.14.3"
+  "bugs": {
+    "url": "https://github.com/Manasvith/Synapse/issues"
+  },
+  "homepage": "https://github.com/Manasvith/Synapse#readme",
+  "description": "",
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "babel-jest": "^30.0.5", 
+    "babel-plugin-istanbul": "^7.0.0"
   }
 }
