@@ -20,6 +20,23 @@ export const addHoldingsController = {
         
         //console.log(request.body.company, alreadyHeld, holding_price, holding_price)
 
+        const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+
+        let curr_balance = r[0].current_balance
+
+        if(curr_balance < request.body.quantity*request.body.price) {
+          return response.status(400).json({
+            success: "false",
+            message: "Insufficient Balance"
+          })
+        } else {
+          const new_balance = curr_balance - (request.body.quantity * request.body.price)
+          const query = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
+          const values = ['Purchase',  request.body.quantity*request.body.price, new_balance, request.body.timestamp]
+
+          await connection.query(query, values)
+        }
+
         if (!alreadyHeld) {
           const query = 'INSERT INTO portfolio (company, quantity, avg_price, time_stamp) VALUES (?, ?, ?, ?)'
           const values = [request.body.company, request.body.quantity, request.body.price, request.body.timestamp]
