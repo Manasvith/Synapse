@@ -10,6 +10,7 @@ export const removeHoldingsController = {
             
             let holding = false
             let holding_quantity = 0
+            let price = 0
 
             if(rows && rows.length > 0) {
                 holding = true
@@ -21,6 +22,13 @@ export const removeHoldingsController = {
                     return response.status(400).json({ success: false, message: "Quantity exceeds holdings" });
                 }
                 else if(request.body.quantity === holding_quantity) {
+                    const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+                    let curr_balance = r[0].current_balance
+
+                    const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
+                    const v = ['Liquidate', holding_quantity*request.body.price, curr_balance + holding_quantity*request.body.price, request.body.timestamp]
+                    await connection.query(q, v)
+
                     const query = 'DELETE FROM portfolio WHERE company = ?'
                     const values = [request.body.company]
                     
@@ -38,6 +46,13 @@ export const removeHoldingsController = {
                 }
                 else {
                     
+                    const [r] = await connection.query("SELECT * FROM settlementaccount LIMIT 1")
+                    let curr_balance = r[0].current_balance
+
+                    const q = 'INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)'
+                    const v = ['Liquidate', request.body.quantity*request.body.price, curr_balance + holding_quantity*request.body.price, ]
+                    await connection.query(q, v)
+
                     const query = 'UPDATE Portfolio SET quantity = ? WHERE company = ?'
                     const values = [holding_quantity - request.body.quantity, request.body.company]
 
