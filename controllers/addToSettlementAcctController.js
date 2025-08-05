@@ -9,7 +9,11 @@ export const addToSettlementAcctController = {
             }
 
             const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
-            let curr_balance = r[0].current_balance
+            let curr_balance = 0
+
+            if(r.length !== 0) {
+                curr_balance = r[0].current_balance
+            }
 
             let new_balance = curr_balance + request.body.transaction_amount
 
