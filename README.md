@@ -1,4 +1,4 @@
-# Actual Project
+# Portfolio Management System - Backend
 
 ## Description
 This project is a portfolio management system that allows users to manage their holdings, view transaction history, and interact with a settlement account. It is built using Node.js, Express, and MySQL.
