@@ -15,6 +15,11 @@ export const removeHoldingsController = {
             if(rows && rows.length > 0) {
                 holding = true
                 holding_quantity = rows[0].quantity
+            } else {
+                return response.status(404).json({ 
+                    success: false, 
+                    message: 'No holdings found for the specified company' 
+                });
             }
 
             if(holding) {
