@@ -43,6 +43,7 @@ This project is a portfolio management system that allows users to manage their 
 - `POST /removeHoldings` - Remove specific holdings from the portfolio.
 - `POST /removeAllHoldings` - Remove all holdings of a specific company.
 - `GET /viewPortfolio` - View all holdings in the portfolio.
+- `GET /viewPortfolioCompanies` - View all companies in the portfolio.
 
 ### Transaction History
 - `GET /viewTransactionHistory` - View the transaction history.
