@@ -7,6 +7,10 @@ export const addHoldingsController = {
           'SELECT * FROM portfolio WHERE company = ?',
           [request.body.company]
         );
+
+        if(request.body.quantity <= 0) {
+          return response.status(400).json({ success: false, message: "Bad request: Quantity must be greater than zero" });
+        }
         
         let alreadyHeld = false
         let holding_price = 0
