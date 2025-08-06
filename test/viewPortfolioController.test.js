@@ -56,7 +56,7 @@ describe('viewPortfolioController', () => {
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith({
       success: false,
-      message: 'No holdings found'
+      message: 'No holdings in the portfolio'
     });
   });
 

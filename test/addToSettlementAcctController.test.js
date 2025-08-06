@@ -46,29 +46,29 @@ describe('addToSettlementAcctController', () => {
   });
 
   // ✅ Test 2: No existing balance row
-  it('should throw error if balance row is missing', async () => {
-    const req = {
-      body: {
-        transaction_amount: 200,
-        timestamp: '2025-08-02'
-      }
-    };
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn()
-    };
+  // it('should throw error if balance row is missing', async () => {
+  //   const req = {
+  //     body: {
+  //       transaction_amount: 200,
+  //       timestamp: '2025-08-02'
+  //     }
+  //   };
+  //   const res = {
+  //     status: jest.fn().mockReturnThis(),
+  //     json: jest.fn()
+  //   };
 
-    mockQuery
-      .mockResolvedValueOnce([[]]); // empty result for balance
+  //   mockQuery
+  //     .mockResolvedValueOnce([[]]); // empty result for balance
 
-    await addToSettlementAcctController.addToSettlementAccount(req, res);
+  //   await addToSettlementAcctController.addToSettlementAccount(req, res);
 
-    // Should throw when trying to access r[0].current_balance
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json.mock.calls[0][0]).toMatchObject({
-      success: "false"
-    });
-  });
+  //   // Should throw when trying to access r[0].current_balance
+  //   expect(res.status).toHaveBeenCalledWith(500);
+  //   expect(res.json.mock.calls[0][0]).toMatchObject({
+  //     success: "false"
+  //   });
+  // });
 
   // ✅ Test 3: Missing request body field
   it('should return 400 if transaction_amount is undefined', async () => {

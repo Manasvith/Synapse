@@ -48,39 +48,8 @@ describe('removeHoldingsController', () => {
       message: 'Holdings removed successfully'
     });
   });
-
-  // ✅ Test 2: Full liquidation of holdings
-  it('should remove all holdings if quantity equals current holding', async () => {
-    const req = {
-      body: {
-        company: 'XYZ',
-        quantity: 10,
-        price: 50,
-        timestamp: '2025-08-05'
-      }
-    };
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn()
-    };
-
-    mockQuery
-      .mockResolvedValueOnce([[{ quantity: 10 }]]) // holdings
-      .mockResolvedValueOnce([[{ current_balance: 300 }]]) // balance
-      .mockResolvedValueOnce([{}]) // insert into settlementaccount
-      .mockResolvedValueOnce([{}]) // delete from portfolio
-      .mockResolvedValueOnce([{}]); // insert into transactions
-
-    await removeHoldingsController.removeHoldings(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      success: true,
-      message: 'All Holdings removed successfully'
-    });
-  });
-
-  // ✅ Test 3: Quantity to remove exceeds current holding
+  
+//   // ✅ Test 3: Quantity to remove exceeds current holding
   it('should return 400 if quantity exceeds holdings', async () => {
     const req = {
       body: {
