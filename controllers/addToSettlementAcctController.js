@@ -15,6 +15,10 @@ export const addToSettlementAcctController = {
                 curr_balance = r[0].current_balance
             }
 
+            if(request.body.transaction_amount <= 0) {
+                return response.status(400).json({success: "false", message: "Bad request: Specify amount greater than 0" })
+            }
+
             let new_balance = curr_balance + request.body.transaction_amount
 
             const query = "INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)"
