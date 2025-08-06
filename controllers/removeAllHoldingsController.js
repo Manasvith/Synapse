@@ -6,6 +6,13 @@ export const removeAllHoldingsController = {
             let company = request.body.company
             let [rows] =await connection.query('SELECT * FROM portfolio WHERE company = ?', company)
             
+            if(rows.length === 0) {
+                return response.status(404).json({ 
+                    success: false, 
+                    message: 'No holdings found for the specified company' 
+                });
+            }
+
             let allHoldings = rows[0].quantity
             
             const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")

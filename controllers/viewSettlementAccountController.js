@@ -3,7 +3,7 @@ import { connection } from '../db.js'
 export const viewSettlementAccountController = {
     viewAccountBalance : async(request, response) => {
         try {
-            const query = 'SELECT * FROM settlementaccount ORDER BY time_stamp LIMIT 1'
+            const query = 'SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1'
             const [rows] = await connection.query(query)
             
             if (rows && rows.length > 0) {

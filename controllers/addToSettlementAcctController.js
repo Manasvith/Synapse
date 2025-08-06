@@ -4,8 +4,16 @@ export const addToSettlementAcctController = {
     addToSettlementAccount: async (request, response) => {
         try {
 
+            if(typeof(request.body.transaction_amount) !== 'number') {
+                return response.status(400).json({success: "false", message: "Bad request: No amount specified"})
+            }
+
             const [r] = await connection.query("SELECT * FROM settlementaccount ORDER BY time_stamp DESC LIMIT 1")
-            let curr_balance = r[0].current_balance
+            let curr_balance = 0
+
+            if(r.length !== 0) {
+                curr_balance = r[0].current_balance
+            }
 
             let new_balance = curr_balance + request.body.transaction_amount
 
