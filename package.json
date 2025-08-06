@@ -1,16 +1,17 @@
 {
   "name": "synapse",
   "version": "1.0.0",
+  "type": "module",
   "main": "db.js",
   "dependencies": {
-    "express": "^5.1.0",
-    "supertest": "^7.1.4",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
+    "express": "^5.1.0",
     "mysql2": "^3.14.3",
-    "cors": "^2.8.5"
+    "supertest": "^7.1.4"
   },
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node server.js"
   },
   "repository": {
@@ -26,8 +27,6 @@
   "homepage": "https://github.com/Manasvith/Synapse#readme",
   "description": "",
   "devDependencies": {
-    "jest": "^30.0.5",
-    "babel-jest": "^30.0.5", 
-    "babel-plugin-istanbul": "^7.0.0"
+    "jest": "^30.0.5"
   }
 }
