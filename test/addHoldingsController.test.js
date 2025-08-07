@@ -174,3 +174,26 @@ describe('addHoldingsController', () => {
     });
   });
 });
+it('should return 400 if quantity is not a valid number', async () => {
+    const req = {
+      body: {
+        company: 'JKL',
+        quantity: NaN,
+        price: 100,
+        timestamp: '2025-08-01'
+      }
+    };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn()
+    };
+  
+    await addHoldingsController.addHoldings(req, res);
+  
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      success: false,
+      message: 'Bad request: Quantity must be greater than zero'
+    });
+  });
+  
