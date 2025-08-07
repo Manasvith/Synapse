@@ -3,8 +3,8 @@ import { connection } from '../db.js'
 export const addHoldingsController = {
     addHoldings: async (request, response) => {
       try {
-        if(request.body.quantity <= 0) {
-          return response.status(400).json({ success: false, message: "Bad request: Quantity must be greater than zero" });
+        if(request.body.quantity <= 0 || typeof(request.body.quantity) != 'number') {
+          return response.status(400).json({ success: false, message: "Bad request: Quantity must be a number greater than zero" });
         }
         
         const [rows] = await connection.query(
