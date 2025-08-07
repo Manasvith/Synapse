@@ -9,9 +9,9 @@ export const withdrawFromSettlementAcctController = {
 
             let new_balance = curr_balance - request.body.transaction_amount
 
-            if (new_balance < 0) {
-                return response.status(400).json({success: "false", message: "Insufficient balance in Settlement Account"})
-            }
+            // if (new_balance < 0) {
+            //     return response.status(400).json({success: "false", message: "Insufficient balance in Settlement Account"})
+            // }
 
             const query = "INSERT INTO settlementaccount (action, transaction_amount, current_balance, time_stamp) VALUES (?, ?, ?, ?)"
             const values = ["Withdraw", request.body.transaction_amount, new_balance, request.body.timestamp]
