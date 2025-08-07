@@ -3,7 +3,7 @@ import { connection } from '../db.js'
 export const addHoldingsController = {
     addHoldings: async (request, response) => {
       try {
-        if(request.body.quantity <= 0 || typeof(request.body.quantity) !== 'number' || request.body.quantity === NaN) {
+        if(request.body.quantity <= 0 || typeof(request.body.quantity) != 'number' || Number.isNaN(request.body.quantity)) {
           return response.status(400).json({ success: false, message: "Bad request: Quantity must be a number and greater than zero" });
         }
 

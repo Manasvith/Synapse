@@ -121,7 +121,7 @@ describe('addHoldingsController', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       success: false,
-      message: 'Bad request: Quantity must be greater than zero'
+      message: 'Bad request: Quantity must be a number and greater than zero'
     });
   });
 
@@ -190,10 +190,10 @@ it('should return 400 if quantity is not a valid number', async () => {
   
     await addHoldingsController.addHoldings(req, res);
   
-    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       success: false,
-      message: 'Bad request: Quantity must be greater than zero'
+      message: 'Bad request: Quantity must be a number and greater than zero'
     });
   });
   
