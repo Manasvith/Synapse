@@ -18,7 +18,7 @@ jobs:
         node-version: '14'
 
     - name: Install dependencies
-      run: npm install cors mysql2 jest express
+      run: npm install cors mysql2 jest@29 express
 
     - name: Run tests
       run: npm test
