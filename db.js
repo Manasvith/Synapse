@@ -8,3 +8,4 @@ export const connection = await mysql.createConnection({
   database: process.env.DATABASE,
   password: process.env.PASSWORD
 });
+

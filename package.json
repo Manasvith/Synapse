@@ -1,18 +1,32 @@
 {
-  "name": "actual",
+  "name": "synapse",
   "version": "1.0.0",
-  "description": "Project",
-  "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "main": "db.js",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "mysql2": "^3.14.3"
+    "mysql2": "^3.14.3",
+    "supertest": "^7.1.4"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manasvith/Synapse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manasvith/Synapse/issues"
+  },
+  "homepage": "https://github.com/Manasvith/Synapse#readme",
+  "description": "",
+  "devDependencies": {
+    "jest": "^30.0.5"
   }
 }
